@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void removeUser(int id) {
+    public void removeUser(Integer id) {
         Session session = this.sessionFactory.getCurrentSession();
         User user = session.load(User.class, id);
 
@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(Integer id) {
         //Session session =this.sessionFactory.getCurrentSession();
         Session session = sessionFactory.getCurrentSession();
         User user = session.load(User.class, id);

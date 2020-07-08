@@ -29,13 +29,13 @@ public class UserController {
     }
 
     @PostMapping(value = "/users/add")
-    public String addUser(@RequestParam ("userName") String userName, @RequestParam("email") String email, @RequestParam("age") int age){
+    public String addUser(@RequestParam ("userName") String userName, @RequestParam("email") String email, @RequestParam("age") Integer age){
         userService.addUser(new User(userName, email, age));
         return "redirect:/users";
     }
 
     @PostMapping("/users/remove")
-    public String removeUser(@RequestParam("id") int id, Model model){
+    public String removeUser(@RequestParam("id") Integer id, Model model){
 
         userService.removeUser(id);
 
@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping("/users/edit")
-    public String editUser(@PathVariable("id") int id, Model model){
+    public String editUser(@PathVariable("id") Integer id, Model model){
         model.addAttribute("user", userService.getUserById(id));
         model.addAttribute("listUsers", userService.listUsers());
 
@@ -51,13 +51,13 @@ public class UserController {
     }
 
     @GetMapping("/users/update")
-    public String userData(Model model, @RequestParam("id") int id){
+    public String userData(Model model, @RequestParam("id") Integer id){
                 model.addAttribute("user", this.userService.getUserById(id));
         return "updateUser";
     }
 
     @PostMapping("/users/update")
-    public String userData(Model model, @RequestParam("id") int id, @RequestParam("userName")
+    public String userData(Model model, @RequestParam("id") Integer id, @RequestParam("userName")
             String userName, @RequestParam("email") String email, @RequestParam int age){
        this.userService.updateUser(new User(id, userName, email, age));
         return "redirect:/users";
